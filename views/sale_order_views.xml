@@ -7,18 +7,71 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
 
-            <!-- Grilla de líneas -->
-            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom']" position="after">
-                <field name="x_espesor" string="Espesor" optional="show"/>
-                <field name="x_ancho" string="Ancho" optional="show"/>
-                <field name="x_alto" string="Alto" optional="show"/>
+            <!-- Posición / Recinto / Garantía antes de Producto -->
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_template_id']" position="before">
+                <field name="x_posicion" optional="show"/>
+                <field name="x_recinto" optional="show"/>
+                <field name="x_garantia_id" optional="show"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_template_id']" position="after">
+                <field name="x_espesor" optional="show"/>
+                <field name="x_ancho" optional="show"/>
+                <field name="x_alto" optional="show"/>
+            </xpath>
+
+            <!-- Subtotal visible por defecto e inmediatamente después de Precio un. -->
+            <xpath expr="//field[@name='order_line']/list/field[@name='price_unit']" position="after">
+                <xpath expr="//field[@name='order_line']/list/field[@name='price_subtotal']" position="move"/>
+                <field name="x_valor_flete_unitario" optional="show"/>
+                <field name="x_total_flete" optional="show" readonly="1"/>
+                <field name="x_total" optional="show" readonly="1" sum="Neto"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='price_subtotal']" position="attributes">
+                <attribute name="string">Subtotal</attribute>
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+            <!-- Campos ocultos por defecto, pero disponibles desde selector de columnas -->
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_packaging_qty']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_packaging_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='tax_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='customer_lead']" position="attributes">
+                <attribute name="optional">show</attribute>
             </xpath>
 
             <!-- Formulario interno de la línea -->
+            <xpath expr="//field[@name='order_line']/form//field[@name='product_uom_qty']" position="before">
+                <field name="x_posicion"/>
+                <field name="x_recinto"/>
+                <field name="x_garantia_id"/>
+            </xpath>
+
             <xpath expr="//field[@name='order_line']/form//field[@name='product_uom']" position="after">
                 <field name="x_espesor"/>
                 <field name="x_ancho"/>
                 <field name="x_alto"/>
+                <field name="x_valor_flete_unitario"/>
+                <field name="x_total_flete" readonly="1"/>
+                <field name="x_total" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
 
         </field>
