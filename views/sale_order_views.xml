@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
 
-            <!-- Nuevas columnas y orden visible por defecto -->
-            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="before">
+            <!-- Posición / Recinto / Garantía antes de Producto -->
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_template_id']" position="before">
                 <field name="x_posicion" optional="show"/>
                 <field name="x_recinto" optional="show"/>
                 <field name="x_garantia_id" optional="show"/>
@@ -20,7 +20,9 @@
                 <field name="x_alto" optional="show"/>
             </xpath>
 
+            <!-- Subtotal visible por defecto e inmediatamente después de Precio un. -->
             <xpath expr="//field[@name='order_line']/list/field[@name='price_unit']" position="after">
+                <xpath expr="//field[@name='order_line']/list/field[@name='price_subtotal']" position="move"/>
                 <field name="x_valor_flete_unitario" optional="show"/>
                 <field name="x_total_flete" optional="show" readonly="1"/>
             </xpath>
