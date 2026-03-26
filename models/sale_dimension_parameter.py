@@ -60,3 +60,20 @@ class SaleDimensionRange(models.Model):
                 raise ValidationError(
                     "Solo puede existir una configuración de rangos activa a la vez."
                 )
+
+
+class SaleDimensionWarranty(models.Model):
+    _name = "sale.dimension.warranty"
+    _description = "Garantías para líneas de venta"
+    _order = "name asc"
+
+    name = fields.Char(string="Garantía", required=True, size=80)
+    active = fields.Boolean(string="Activo", default=True)
+
+    _sql_constraints = [
+        (
+            "sale_dimension_warranty_name_unique",
+            "unique(name)",
+            "Ya existe una garantía con ese nombre.",
+        ),
+    ]
