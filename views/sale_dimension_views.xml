@@ -85,10 +85,44 @@
         <field name="view_mode">list,form</field>
     </record>
 
+    <!-- Garantías -->
+
+    <record id="view_sale_dimension_warranty_list" model="ir.ui.view">
+        <field name="name">sale.dimension.warranty.list</field>
+        <field name="model">sale.dimension.warranty</field>
+        <field name="arch" type="xml">
+            <list string="Garantías">
+                <field name="name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sale_dimension_warranty_form" model="ir.ui.view">
+        <field name="name">sale.dimension.warranty.form</field>
+        <field name="model">sale.dimension.warranty</field>
+        <field name="arch" type="xml">
+            <form string="Garantía">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_dimension_warranty" model="ir.actions.act_window">
+        <field name="name">Garantías</field>
+        <field name="res_model">sale.dimension.warranty</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
     <!-- Menús -->
     <menuitem
         id="menu_sale_dimension_root"
-        name="Parámetros de dimensiones"
+        name="Parámetros"
         parent="sale.sale_menu_root"
         sequence="85"
         groups="sales_team.group_sale_salesman"/>
@@ -107,6 +141,14 @@
         parent="menu_sale_dimension_root"
         action="action_sale_dimension_range"
         sequence="20"
+        groups="sales_team.group_sale_salesman"/>
+
+    <menuitem
+        id="menu_sale_dimension_warranty"
+        name="Garantías"
+        parent="menu_sale_dimension_root"
+        action="action_sale_dimension_warranty"
+        sequence="30"
         groups="sales_team.group_sale_salesman"/>
 
 </odoo>
