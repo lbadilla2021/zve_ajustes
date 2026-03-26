@@ -25,7 +25,7 @@
                 <xpath expr="//field[@name='order_line']/list/field[@name='price_subtotal']" position="move"/>
                 <field name="x_valor_flete_unitario" optional="show"/>
                 <field name="x_total_flete" optional="show" readonly="1"/>
-                <field name="x_total" optional="show" readonly="1" sum="Neto"/>
+                <field name="x_total" optional="show" readonly="1"/>
             </xpath>
 
             <xpath expr="//field[@name='order_line']/list/field[@name='price_subtotal']" position="attributes">
