@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="sale_dimension_thickness_40" model="sale.dimension.thickness">
+        <field name="value">40</field>
+    </record>
+
+    <record id="sale_dimension_thickness_45" model="sale.dimension.thickness">
+        <field name="value">45</field>
+    </record>
+
+    <record id="sale_dimension_thickness_55" model="sale.dimension.thickness">
+        <field name="value">55</field>
+    </record>
+
+    <record id="sale_dimension_range_default" model="sale.dimension.range">
+        <field name="name">Configuración general</field>
+        <field name="active">1</field>
+        <field name="width_min">600</field>
+        <field name="width_max">1150</field>
+        <field name="length_min">2000</field>
+        <field name="length_max">2400</field>
+    </record>
+
+</odoo>

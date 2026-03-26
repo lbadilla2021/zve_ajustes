@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Espesores permitidos -->
+
+    <record id="view_sale_dimension_thickness_list" model="ir.ui.view">
+        <field name="name">sale.dimension.thickness.list</field>
+        <field name="model">sale.dimension.thickness</field>
+        <field name="arch" type="xml">
+            <list string="Espesores permitidos">
+                <field name="value"/>
+                <field name="active"/>
+                <field name="note"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sale_dimension_thickness_form" model="ir.ui.view">
+        <field name="name">sale.dimension.thickness.form</field>
+        <field name="model">sale.dimension.thickness</field>
+        <field name="arch" type="xml">
+            <form string="Espesor permitido">
+                <sheet>
+                    <group>
+                        <field name="value"/>
+                        <field name="active"/>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_dimension_thickness" model="ir.actions.act_window">
+        <field name="name">Espesores permitidos</field>
+        <field name="res_model">sale.dimension.thickness</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Rangos ancho/alto -->
+
+    <record id="view_sale_dimension_range_list" model="ir.ui.view">
+        <field name="name">sale.dimension.range.list</field>
+        <field name="model">sale.dimension.range</field>
+        <field name="arch" type="xml">
+            <list string="Rangos de ancho y alto">
+                <field name="name"/>
+                <field name="active"/>
+                <field name="width_min"/>
+                <field name="width_max"/>
+                <field name="length_min"/>
+                <field name="length_max"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sale_dimension_range_form" model="ir.ui.view">
+        <field name="name">sale.dimension.range.form</field>
+        <field name="model">sale.dimension.range</field>
+        <field name="arch" type="xml">
+            <form string="Rangos de ancho y alto">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Ancho">
+                            <field name="width_min"/>
+                            <field name="width_max"/>
+                        </group>
+                        <group string="Alto">
+                            <field name="length_min"/>
+                            <field name="length_max"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_dimension_range" model="ir.actions.act_window">
+        <field name="name">Rangos ancho/alto</field>
+        <field name="res_model">sale.dimension.range</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menús -->
+    <menuitem
+        id="menu_sale_dimension_root"
+        name="Parámetros de dimensiones"
+        parent="sale.sale_menu_root"
+        sequence="85"
+        groups="sales_team.group_sale_salesman"/>
+
+    <menuitem
+        id="menu_sale_dimension_thickness"
+        name="Espesores permitidos"
+        parent="menu_sale_dimension_root"
+        action="action_sale_dimension_thickness"
+        sequence="10"
+        groups="sales_team.group_sale_salesman"/>
+
+    <menuitem
+        id="menu_sale_dimension_range"
+        name="Rangos ancho/alto"
+        parent="menu_sale_dimension_root"
+        action="action_sale_dimension_range"
+        sequence="20"
+        groups="sales_team.group_sale_salesman"/>
+
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_dimension_thickness_user,sale.dimension.thickness.user,model_sale_dimension_thickness,sales_team.group_sale_salesman,1,1,1,1
+access_sale_dimension_range_user,sale.dimension.range.user,model_sale_dimension_range,sales_team.group_sale_salesman,1,1,1,1
