@@ -19,11 +19,22 @@ class SaleOrderLine(models.Model):
         compute="_compute_total_flete",
         store=True,
     )
+    x_total = fields.Monetary(
+        string="Total",
+        currency_field="currency_id",
+        compute="_compute_x_total",
+        store=True,
+    )
 
     @api.depends("x_valor_flete_unitario", "product_uom_qty")
     def _compute_total_flete(self):
         for rec in self:
             rec.x_total_flete = int((rec.x_valor_flete_unitario or 0) * (rec.product_uom_qty or 0))
+
+    @api.depends("price_subtotal", "x_total_flete")
+    def _compute_x_total(self):
+        for rec in self:
+            rec.x_total = (rec.price_subtotal or 0.0) + (rec.x_total_flete or 0)
 
     @api.constrains("x_espesor", "x_ancho", "x_alto")
     def _check_dimension_rules(self):
